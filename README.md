@@ -1,3 +1,1 @@
-# TIARa
-
-This is a Raster 
+# TIARa - This is a Raster 
