@@ -10,8 +10,8 @@ namespace tiara{
 			channel g;
 			channel b;
 
-			Color(channel r_ = 0, channel g_ = 0, channel b_ = 0) : r{r_}, g{g_}, b{b_} {}
-			Color(Color & color);
+			Color(const channel r_ = 0, const channel g_ = 0, const channel b_ = 0) : r{r_}, g{g_}, b{b_} {}
+			Color(const Color & color);
 			channel& operator[](int idx);
 			const channel& operator[](int idx) const;
 	};

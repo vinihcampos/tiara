@@ -4,7 +4,7 @@
 #include <iostream>
 
 tiara::Canvas::Canvas(size_t width_, size_t height_) : width{width_}, height{height_} {
-	canvas = std::make_unique<tiara::Canvas::component_t[]>(width * height * 3);
+	canvas = std::make_unique<component_t[]>(width * height * 3);
 	std::memset(canvas.get(), 0, width * height * 3 * sizeof(component_t));
 }
 
@@ -28,10 +28,6 @@ tiara::Color tiara::Canvas::get(const size_t & idx) const{
 
 void tiara::Canvas::pixel(const Point2d & p, const Color & color){
 	size_t real_p = p.x * width + p.y;
-
-	//std::cout << "R(" << real_p << ")/";
-	//std::cout << "G(" << real_p + 1 * width * height << ")/";
-	//std::cout << "B(" << real_p + 2 * width * height << ")" << std::endl;
 
 	for(int i = 0; i < 3; ++i) 
 		canvas[real_p + i * width * height] = color[i];

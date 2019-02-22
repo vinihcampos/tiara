@@ -7,11 +7,11 @@
 #include "Point2d.h"
 
 namespace tiara{
+	
+	typedef unsigned char component_t;
 
 	class Canvas{
-		private:
-			typedef unsigned char component_t;
-			
+		private:			
 			size_t width, height;
 			std::unique_ptr<component_t[]> canvas;
 		public:

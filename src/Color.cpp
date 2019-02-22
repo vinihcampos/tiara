@@ -1,6 +1,6 @@
 #include "Color.h"
 
-tiara::Color::Color(Color & color){
+tiara::Color::Color(const Color & color){
 	r = color.r;
 	g = color.g;
 	b = color.b;
