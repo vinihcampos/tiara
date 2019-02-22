@@ -15,9 +15,9 @@ void tiara::Canvas::fill(const Color & color){
 }
 
 tiara::Color tiara::Canvas::get(const tiara::Point2d & p) const{
-	return tiara::Color( canvas[p.x * width + p.y],
-	                     canvas[p.x * width + p.y + width * height],
-	                     canvas[p.x * width + p.y + width * height * 2] );
+	return tiara::Color( canvas[p.y * width + p.x],
+	                     canvas[p.y * width + p.x + width * height],
+	                     canvas[p.y * width + p.x + width * height * 2] );
 }
 
 tiara::Color tiara::Canvas::get(const size_t & idx) const{
@@ -27,8 +27,7 @@ tiara::Color tiara::Canvas::get(const size_t & idx) const{
 }
 
 void tiara::Canvas::pixel(const Point2d & p, const Color & color){
-	size_t real_p = p.x * width + p.y;
-
+	int real_p = p.y * width + p.x;
 	for(int i = 0; i < 3; ++i) 
 		canvas[real_p + i * width * height] = color[i];
 }

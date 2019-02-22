@@ -9,7 +9,7 @@ std::string tiara::PPM::generator(const tiara::Canvas & canvas){
 
 	for(size_t i = 0; i < canvas.getHeight(); ++i){
 		for(size_t j = 0; j < canvas.getWidth(); ++j){
-			Color c = canvas.get(Point2d(i,j));
+			Color c = canvas.get(Point2d(j,i));
 			result += std::to_string(c.r) + " " + std::to_string(c.g) + " " + std::to_string(c.b) + " ";
 		}
 		result += "\n";

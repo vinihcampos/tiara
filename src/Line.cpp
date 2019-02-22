@@ -3,18 +3,11 @@
 #include "math.h"
 #include <iostream>
 
-tiara::Line::Line(size_t x1_, size_t y1_, size_t x2_, size_t y2_, const Color & color_, const tiara::LineImpl lineImpl_){
-	if(x1_ < x2_){
-		x1 = x1_;
-		x2 = x2_;
-		y1 = y1_;
-		y2 = y2_;
-	}else{
-		x1 = x2_;
-		x2 = x1_;
-		y1 = y2_;
-		y2 = y1_;
-	}
+tiara::Line::Line(int x1_, int y1_, int x2_, int y2_, const Color & color_, const tiara::LineImpl lineImpl_){
+	x1 = x1_;
+	x2 = x2_;
+	y1 = y1_;
+	y2 = y2_;
 
 	color = color_;
 	lineImpl = lineImpl_;
@@ -32,25 +25,35 @@ void tiara::Line::draw(Canvas & canvas){
 }
 
 void tiara::Line::dda(Canvas & canvas){
-	float dx, dy, y, m;
-	bool climbind = true;
-
-	if(y2 < y1)
-		climbind = false;
+	float dx, dy, mx, my;
 
 	dy = y2 - y1;
 	dx = x2 - x1;
 
-	m = dy/dx;
+	if(dx == 0){
+		for(size_t y = std::min(y1,y2); y <= std::max(y1,y2); ++y){
+			canvas.pixel(Point2d(x1, y), color);
+		}
+		return;
+	}
 
-	if(std::abs(m) > 1)
-		m = dx/dy;
+	int iterations;
 
-	y = y1;
-	for(size_t x = x1; x <= x2; ++x){
-		canvas.pixel(Point2d(x, std::round(y)), color);
-		if(climbind) y += m;
-		else y -= m;
+	if(std::abs(dy) > std::abs(dx))
+		iterations = std::abs(dy);
+	else
+		iterations = std::abs(dx);
+
+	my = dy/((1.0)*iterations);
+	mx = dx/((1.0)*iterations);
+
+	float x = x1;
+	float y = y1;
+
+	for(int i = 0; i <= iterations; ++i){		
+		canvas.pixel(Point2d(std::round(x), std::round(y)), color);
+		x += mx;
+		y += my;
 	}
 
 }
