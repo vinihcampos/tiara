@@ -3,11 +3,9 @@
 #include "math.h"
 #include <iostream>
 
-tiara::Line::Line(int x1_, int y1_, int x2_, int y2_, const Color & color_, const tiara::LineImpl lineImpl_){
-	x1 = x1_;
-	x2 = x2_;
-	y1 = y1_;
-	y2 = y2_;
+tiara::Line::Line(Point2d p1_, Point2d p2_, const Color & color_, const tiara::LineImpl lineImpl_){
+	p1 = p1_;
+	p2 = p2_;
 
 	color = color_;
 	lineImpl = lineImpl_;
@@ -15,7 +13,7 @@ tiara::Line::Line(int x1_, int y1_, int x2_, int y2_, const Color & color_, cons
 
 void tiara::Line::draw(Canvas & canvas){
 	switch(lineImpl){
-		case LineDDA:
+		case DDA:
 			dda(canvas);
 			break;
 		default:
@@ -27,12 +25,13 @@ void tiara::Line::draw(Canvas & canvas){
 void tiara::Line::dda(Canvas & canvas){
 	float dx, dy, mx, my;
 
-	dy = y2 - y1;
-	dx = x2 - x1;
+	dy = p2.y - p1.y;
+	dx = p2.x - p1.x;
 
 	if(dx == 0){
-		for(size_t y = std::min(y1,y2); y <= std::max(y1,y2); ++y){
-			canvas.pixel(Point2d(x1, y), color);
+		size_t max_y = std::max(p1.y,p2.y);
+		for(size_t y = std::min(p1.y,p2.y); y <= max_y; ++y){
+			canvas.pixel(Point2d(p1.x, y), color);
 		}
 		return;
 	}
@@ -47,8 +46,8 @@ void tiara::Line::dda(Canvas & canvas){
 	my = dy/((1.0)*iterations);
 	mx = dx/((1.0)*iterations);
 
-	float x = x1;
-	float y = y1;
+	float x = p1.x;
+	float y = p1.y;
 
 	for(int i = 0; i <= iterations; ++i){		
 		canvas.pixel(Point2d(std::round(x), std::round(y)), color);
