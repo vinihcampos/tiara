@@ -8,7 +8,8 @@
 namespace tiara{
 
 	enum LineImpl{
-		DDA = 1			
+		DDA = 1,
+		Bresenham = 2		
 	};
 
 	class Line : public Shape{
@@ -18,6 +19,7 @@ namespace tiara{
 			LineImpl lineImpl;
 
 			void dda(Canvas & canvas);
+			void bresenham(Canvas & Canvas);
 		public:
 
 			Line(Point2d p1_, Point2d p2_, const Color & color_, const tiara::LineImpl lineImpl_ = DDA);
