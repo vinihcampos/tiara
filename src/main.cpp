@@ -7,7 +7,7 @@
 #include "Shape.h"
 #include "Line.h"
 #include "PPM.h"
-#include "yaml-cpp/yaml.h"
+#include "yaml.h"
 
 using namespace std;
 
