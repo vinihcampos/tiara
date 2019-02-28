@@ -37,4 +37,4 @@ file(GLOB SRC_MAIN "src/*.cpp")
 # executables
 # --------------------------------------- #
 add_executable(tiara ${SRC_MAIN})
-target_link_libraries(tiara yaml-cpp)
+target_include_directories(tiara PUBLIC ${yamlcpp_SOURCE_DIR}/include)

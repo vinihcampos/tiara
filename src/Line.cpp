@@ -1,6 +1,6 @@
 #include "Line.h"
 #include "Point2d.h"
-#include "math.h"
+#include <math.h>
 #include <iostream>
 
 tiara::Line::Line(Point2d p1_, Point2d p2_, const Color & color_, const tiara::LineImpl lineImpl_){

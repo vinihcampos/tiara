@@ -6,26 +6,20 @@
 #include "Point2d.h"
 #include "Shape.h"
 #include "Line.h"
+#include "Arc.h"
 #include "PPM.h"
-#include "yaml.h"
+#include "yaml-cpp/yaml.h"
 
 using namespace std;
 
 int main(int argn, char const *argv[]){
 	
-	tiara::Canvas canvas(300,200);
+	tiara::Canvas canvas(30,30);
 	tiara::Shape * s;
-	s = new tiara::Line(tiara::Point2d(75,50),tiara::Point2d(75,199), tiara::WHITE, tiara::LineImpl::Bresenham);
-	s->draw(canvas);
-	s = new tiara::Line(tiara::Point2d(75,50),tiara::Point2d(100,100), tiara::WHITE, tiara::LineImpl::Bresenham);
-	s->draw(canvas);
-	s = new tiara::Line(tiara::Point2d(100,100),tiara::Point2d(200,100), tiara::WHITE, tiara::LineImpl::Bresenham);
-	s->draw(canvas);
-	s = new tiara::Line(tiara::Point2d(200,100),tiara::Point2d(225,50), tiara::WHITE, tiara::LineImpl::Bresenham);
-	s->draw(canvas);
-	s = new tiara::Line(tiara::Point2d(225,50),tiara::Point2d(225,199), tiara::WHITE, tiara::LineImpl::Bresenham);
+	s = new tiara::Arc(tiara::Point2d(15,15), 10);
 	s->draw(canvas);
 	cout << tiara::PPM::generator(canvas);
+
 
 	return 0;
 }
