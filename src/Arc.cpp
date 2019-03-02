@@ -10,16 +10,18 @@ tiara::Arc::Arc(const Point2d center_,
 				start_angle{start_angle_}, final_angle{final_angle_}{}
 
 void tiara::Arc::draw(Canvas & canvas){
-	float start_rad = start_angle * PI / 180;
-	float end_rad = start_angle * PI / 180;
 
 	int x = 0, y = radius;
 	int d = 1 - radius, dh = 3, dv = (-2) * radius + 5;
 
-	canvas.pixel(Point2d(center.x + radius, center.y), color);
-	canvas.pixel(Point2d(center.x - radius, center.y), color);
-	canvas.pixel(Point2d(center.x, center.y + radius), color);
-	canvas.pixel(Point2d(center.x, center.y - radius), color);
+	if(start_angle == 0 || start_angle == 360 || final_angle == 0 || final_angle == 360)
+		canvas.pixel(Point2d(center.x + radius, center.y), color);
+	if(start_angle <= 90 && final_angle >= 90)
+		canvas.pixel(Point2d(center.x, center.y - radius), color);
+	if(start_angle <= 180 && final_angle >= 180)
+		canvas.pixel(Point2d(center.x - radius, center.y), color);
+	if(start_angle <= 270 && final_angle >= 270)
+		canvas.pixel(Point2d(center.x, center.y + radius), color);
 
 	while(y > x){
 		
@@ -34,40 +36,38 @@ void tiara::Arc::draw(Canvas & canvas){
 			y--;
 		}
 		x++;
-		canvas.pixel(Point2d(x + center.x, -y + center.y), color);
-		canvas.pixel(Point2d(-x + center.x, y + center.y), color);
-		canvas.pixel(Point2d(-x + center.x, -y + center.y), color);
-		canvas.pixel(Point2d(x + center.x, y + center.y), color);
 
-		if (x != y) { 
-			canvas.pixel(Point2d(y + center.x, -x + center.y), color);
-			canvas.pixel(Point2d(-y + center.x, x + center.y), color);
-			canvas.pixel(Point2d(-y + center.x, -x + center.y), color);
-			canvas.pixel(Point2d(y + center.x, x + center.y), color);
-        } 
+		float a1,a2,a3,a4;
+		a1 = std::acos( x / radius ) * 180.0 / PI;
+		a2 = 180 - a1;
+		a3 = 180 + a1;
+		a4 = 270 + (90 - a1);
 
-		/*float angle1 = cosine(Point2d( center.x + radius, 0 ), Point2d( x + center.x, -y + center.y) );
-		float angle2 = cosine(Point2d( 0, center.y - radius ), Point2d(-x + center.x, -y + center.y) ) + angle1;
-		float angle3 = cosine(Point2d( center.x - radius, 0 ), Point2d(-x + center.x,  y + center.y) ) + angle2;
-		float angle4 = cosine(Point2d( 0, center.y + radius ), Point2d( x + center.x,  y + center.y) ) + angle3;
-
-		std::cout << angle1 << "," << angle2 << "," << angle3 << "," << angle4 << std::endl;
-
-		// 1º Quad
-		if(start_rad <= angle1 && angle1 <= end_rad)
+		if(start_angle <= a1 && a1 <= final_angle)
 			canvas.pixel(Point2d(x + center.x, -y + center.y), color);
-
-		// 2º Quad
-		if(start_rad <= angle2 && angle2 <= end_rad)
+		if(start_angle <= a2 && a2 <= final_angle)
 			canvas.pixel(Point2d(-x + center.x, -y + center.y), color);
-
-		// 3º Quad
-		if(start_rad <= angle3 && angle3 <= end_rad)
+		if(start_angle <= a3 && a3 <= final_angle)
 			canvas.pixel(Point2d(-x + center.x, y + center.y), color);
+		if(start_angle <= a4 && a4 <= final_angle)
+			canvas.pixel(Point2d(x + center.x, y + center.y), color);
 
-		// 4º Quad
-		if(start_rad <= angle4 && angle4 <= end_rad)
-			canvas.pixel(Point2d(x + center.x, y + center.y), color);*/
+		if (x != y) {
+
+			a1 = std::asin( x / radius ) * 180.0 / PI;
+			a2 = 180 - a1;
+			a3 = 180 + a1;
+			a4 = 270 + (90 - a1);
+
+			if(start_angle <= a1 && a1 <= final_angle)
+				canvas.pixel(Point2d(y + center.x, -x + center.y), color);
+			if(start_angle <= a2 && a2 <= final_angle)
+				canvas.pixel(Point2d(-y + center.x, -x + center.y), color);
+			if(start_angle <= a3 && a3 <= final_angle)
+				canvas.pixel(Point2d(-y + center.x, x + center.y), color);
+			if(start_angle <= a4 && a4 <= final_angle)
+				canvas.pixel(Point2d(y + center.x, x + center.y), color);
+        }
 	}
 }
 
