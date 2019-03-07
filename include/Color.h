@@ -14,6 +14,7 @@ namespace tiara{
 			Color(const Color & color);
 			channel& operator[](int idx);
 			const channel& operator[](int idx) const;
+			bool operator==(const Color & color) const;
 	};
 
 	/* Predefined colors*/

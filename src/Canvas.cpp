@@ -14,10 +14,21 @@ tiara::Canvas::Canvas(size_t width_, size_t height_, float norm) : width{width_}
 	}
 }
 
-void tiara::Canvas::fill(const Color & color){
-	std::memset(canvas.get(),                       color.r, width * height * sizeof(component_t));
-	std::memset(canvas.get() + (width * height),    color.g, width * height * sizeof(component_t));
-	std::memset(canvas.get() + (width * height * 2),color.b, width * height * sizeof(component_t));
+void tiara::Canvas::fill(const Color & color, const Point2d p, const Color & borderColor){
+
+	//std::cout << "(x,y): " << p.x << "," << p.y << std::endl;
+
+	if(p.x >= 0 && p.x < width && p.y >= 0 && p.y < height && !(get(p) == borderColor) && !(get(p) == color)){
+		pixel(p, color);
+		fill(color, Point2d(p.x, p.y+1), borderColor);
+		fill(color, Point2d(p.x+1, p.y), borderColor);
+		fill(color, Point2d(p.x, p.y-1), borderColor);
+		fill(color, Point2d(p.x-1, p.y), borderColor);
+	}
+
+	//std::memset(canvas.get(),                       color.r, width * height * sizeof(component_t));
+	//std::memset(canvas.get() + (width * height),    color.g, width * height * sizeof(component_t));
+	//std::memset(canvas.get() + (width * height * 2),color.b, width * height * sizeof(component_t));
 }
 
 tiara::Color tiara::Canvas::get(const tiara::Point2d & p) const{

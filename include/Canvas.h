@@ -29,7 +29,7 @@ namespace tiara{
 			Color get(const size_t & idx) const;
 
 			/* Fill background wih specific color */
-			void fill(const Color & color);
+			void fill(const Color & color, const Point2d p = Point2d(0,0), const Color & borderColor = BLACK);
 			/* Paint a specific pixel */
 			void pixel(const Point2d & p, const Color & color);
 			/* Paint a set of pixels */

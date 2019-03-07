@@ -31,3 +31,7 @@ const tiara::Color::channel& tiara::Color::operator[](int idx) const{
 			throw "Index out of range";
 	}
 }
+
+bool tiara::Color::operator==(const tiara::Color & color) const{
+	return r == color.r && g == color.g && b == color.b;
+}
