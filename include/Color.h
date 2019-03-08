@@ -20,6 +20,7 @@ namespace tiara{
 	/* Predefined colors*/
 	static const Color BLACK;
 	static const Color WHITE(255,255,255);
+	static const Color TRANSPARENT(255,255,255);
 
 }
 

@@ -22,6 +22,7 @@ namespace tiara{
 			void bresenham(Canvas & Canvas);
 		public:
 
+			Line(){}
 			Line(Point2d p1_, Point2d p2_, const Color & color_, const tiara::LineImpl lineImpl_ = DDA);
 			void draw(Canvas & canvas) override;
 	};
