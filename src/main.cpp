@@ -9,7 +9,6 @@
 #include "Arc.h"
 #include "PPM.h"
 #include "Polygon.h"
-//#include "yaml-cpp/yaml.h"
 
 using namespace std;
 
@@ -27,12 +26,18 @@ int main(int argn, char const *argv[]){
 	//canvas.fill(tiara::Color(255,255,0), tiara::Point2d(150,150), tiara::WHITE);
 
 	std::vector<tiara::Point2d> points;
-	points.push_back(tiara::Point2d(10,10));
-	points.push_back(tiara::Point2d(20,20));
-	points.push_back(tiara::Point2d(50,10));
-	points.push_back(tiara::Point2d(0,0));
+	points.push_back(tiara::Point2d(100,100));
+	points.push_back(tiara::Point2d(120,100));
+	points.push_back(tiara::Point2d(120,70));
+	points.push_back(tiara::Point2d(150,70));
+	points.push_back(tiara::Point2d(160,55));
+	points.push_back(tiara::Point2d(140,20));
+	points.push_back(tiara::Point2d(120,20));
+	points.push_back(tiara::Point2d(120,50));
+	points.push_back(tiara::Point2d(70,50));
+	points.push_back(tiara::Point2d(70,80));
 
-	s = new tiara::Polygon(points, true, false, tiara::WHITE);
+	s = new tiara::Polygon(points, false, true, tiara::Color(255,0,0), tiara::WHITE);
 	s->draw(canvas);
 
 	//s = new tiara::Line(tiara::Point2d(10,10), tiara::Point2d(20,20), tiara::WHITE);
@@ -44,7 +49,7 @@ int main(int argn, char const *argv[]){
 	//s = new tiara::Line(tiara::Point2d(0,0), tiara::Point2d(10,10), tiara::WHITE);
 	//s->draw(canvas);
 
-	//canvas.antialiasing();
+	canvas.antialiasing();
 	cout << tiara::PPM::generator(canvas);
 
 	return 0;

@@ -5,7 +5,9 @@
 #include "Shape.h"
 #include "Canvas.h"
 #include "Color.h"
+#include "Edge.h"
 #include <vector>
+#include <map>
 
 namespace tiara{
 
@@ -13,8 +15,13 @@ namespace tiara{
 		private:
 			Color borderColor;
 			Color fillColor;
+
 			bool border, fill;
+			
 			std::vector<Point2d> points;
+
+			int miny, maxy;
+			std::map< int, std::vector<Edge> >  edges;
 		public:
 			~Polygon();
 			Polygon(bool border_ = true, bool fill_ = false, Color borderColor_ = WHITE, Color fillColor_ = WHITE);
