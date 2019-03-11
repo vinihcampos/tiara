@@ -9,9 +9,11 @@
 #include "Arc.h"
 #include "PPM.h"
 #include "Polygon.h"
+#include "tinyxml2.h"
 
 using namespace std;
 
+/*
 int main(int argn, char const *argv[]){
 	
 	tiara::Canvas canvas(300,300,1/16.0);
@@ -40,6 +42,14 @@ int main(int argn, char const *argv[]){
 	s = new tiara::Polygon(points, false, true, tiara::Color(255,0,0), tiara::WHITE);
 	s->draw(canvas);
 
+	points.clear();
+	points.push_back(tiara::Point2d(0,0));
+	points.push_back(tiara::Point2d(10,0));
+	points.push_back(tiara::Point2d(10,10));
+	points.push_back(tiara::Point2d(0,10));
+	s = new tiara::Polygon(points, false, true, tiara::WHITE, tiara::Color(255,255,0));
+	s->draw(canvas);
+
 	//s = new tiara::Line(tiara::Point2d(10,10), tiara::Point2d(20,20), tiara::WHITE);
 	//s->draw(canvas);
 	//s = new tiara::Line(tiara::Point2d(20,20), tiara::Point2d(50,10), tiara::WHITE);
@@ -54,3 +64,4 @@ int main(int argn, char const *argv[]){
 
 	return 0;
 }
+*/
