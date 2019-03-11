@@ -23,4 +23,6 @@
 	<line x1="180" y1="145" x2="200" y2="140" color="blue" alg="Bresenham"/>
 	<line x1="180" y1="153" x2="200" y2="153" color="blue" alg="Bresenham"/>
 	<line x1="180" y1="161" x2="200" y2="166" color="blue" alg="Bresenham"/>
+
+	<arc x="100" y="150" radius="20" border-color="green" start="0" end="180"/>
 </scene>

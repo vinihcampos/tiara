@@ -1,6 +1,8 @@
 #ifndef _COLOR_
 #define _COLOR_
 
+#include <string>
+
 namespace tiara{
 
 	class Color{
@@ -18,6 +20,7 @@ namespace tiara{
 
 			Color(const channel r_ = 0, const channel g_ = 0, const channel b_ = 0) : r{r_}, g{g_}, b{b_} {}
 			Color(const Color & color);
+			Color(const std::string & color);
 			void paint(const FillingImpl impl = Fill);
 
 			channel& operator[](int idx);
@@ -28,7 +31,10 @@ namespace tiara{
 	/* Predefined colors*/
 	static const Color BLACK;
 	static const Color WHITE(255,255,255);
-	static const Color TRANSPARENT(255,255,255);
+	static const Color YELLOW(255,255,0);
+	static const Color RED(255,0,0);
+	static const Color GREEN(0,255,0);
+	static const Color BLUE(0,0,255);
 
 }
 

@@ -8,7 +8,18 @@ tiara::Line::Line(Point2d p1_, Point2d p2_, const Color & color_, const tiara::L
 	p2 = p2_;
 
 	color = color_;
-	lineImpl = lineImpl_;
+	lineImpl = lineImpl_;	
+}
+
+tiara::Line::Line(Point2d p1_, Point2d p2_, const Color & color_,  const std::string & lineImpl_){
+	p1 = p1_;
+	p2 = p2_;
+
+	color = color_;
+	if(!lineImpl_.compare("Bresenham") || !lineImpl_.compare("bresenham"))
+		lineImpl = tiara::LineImpl::Bresenham;
+	else
+		lineImpl = tiara::LineImpl::DDA;
 }
 
 void tiara::Line::draw(Canvas & canvas){
@@ -130,5 +141,4 @@ void tiara::Line::dda(Canvas & canvas){
 		x += mx;
 		y += my;
 	}
-
 }

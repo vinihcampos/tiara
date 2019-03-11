@@ -7,7 +7,7 @@ using namespace tinyxml2;
 
 // Macro errors
 
-#ifndef XMLCheckResult
+/*#ifndef XMLCheckResult
 	#define XMLCheckResult(a_eResult) if (a_eResult != XML_SUCCESS) { printf("Error: %i\n", a_eResult); return a_eResult; }
 #endif
 
@@ -31,4 +31,4 @@ int main(int argn, char const *argv[]){
 
 
 	return 0;
-}
+}*/

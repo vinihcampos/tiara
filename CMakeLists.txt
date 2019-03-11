@@ -14,10 +14,8 @@ include_directories(include)
 
 # source
 # --------------------------------------- #
-file(GLOB SRC_MAIN "src/*.cpp")
-file(GLOB XML "src/xml_test.cpp" "src/tinyxml2.cpp")
+file(GLOB SRC_TIARA "src/*.cpp")
 
 # executables
 # --------------------------------------- #
-add_executable(tiara ${SRC_MAIN})
-add_executable(xml ${XML})
+add_executable(tiara ${SRC_TIARA})
