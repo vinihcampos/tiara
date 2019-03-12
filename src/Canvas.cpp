@@ -2,6 +2,7 @@
 #include <string>
 #include <cstring>
 #include <iostream>
+#include <math.h>
 
 tiara::Canvas::Canvas(size_t width_, size_t height_, float norm) : width{width_}, height{height_} {
 	canvas = std::make_unique<component_t[]>(width * height * 3);
@@ -15,9 +16,6 @@ tiara::Canvas::Canvas(size_t width_, size_t height_, float norm) : width{width_}
 }
 
 void tiara::Canvas::fill(const Color & color, const Point2d p, const Color & borderColor){
-
-	//std::cout << "(x,y): " << p.x << "," << p.y << std::endl;
-
 	if(p.x >= 0 && p.x < width && p.y >= 0 && p.y < height && !(get(p) == borderColor) && !(get(p) == color)){
 		pixel(p, color);
 		fill(color, Point2d(p.x, p.y+1), borderColor);
@@ -25,10 +23,6 @@ void tiara::Canvas::fill(const Color & color, const Point2d p, const Color & bor
 		fill(color, Point2d(p.x, p.y-1), borderColor);
 		fill(color, Point2d(p.x-1, p.y), borderColor);
 	}
-
-	//std::memset(canvas.get(),                       color.r, width * height * sizeof(component_t));
-	//std::memset(canvas.get() + (width * height),    color.g, width * height * sizeof(component_t));
-	//std::memset(canvas.get() + (width * height * 2),color.b, width * height * sizeof(component_t));
 }
 
 tiara::Color tiara::Canvas::get(const tiara::Point2d & p) const{
@@ -44,8 +38,10 @@ tiara::Color tiara::Canvas::get(const size_t & idx) const{
 }
 
 void tiara::Canvas::pixel(const Point2d & p, const Color & color){
+	if(p.x < 0 || p.x >= width || p.y < 0 || p.y >= height )
+		return;
 	int real_p = p.y * width + p.x;
-	for(int i = 0; i < 3; ++i) 
+	for(int i = 0; i < 3; ++i)
 		canvas[real_p + i * width * height] = color[i];
 }
 
@@ -83,9 +79,9 @@ void tiara::Canvas::antialiasing(){
 	for(int i = 0; i < height; ++i){
 		for(int j = 0; j < width; ++j){
 			kernel_results = multiply(i-1, j-1, i+1, j+1);
-			copy[i * width + j] = kernel_results[0];
-			copy[i * width + j + width * height] = kernel_results[1];
-			copy[i * width + j + width * height * 2] = kernel_results[2];
+			copy[i * width + j] = std::pow(kernel_results[0]  / 255.0, 1/2.0) * 255;
+			copy[i * width + j + width * height] = std::pow(kernel_results[1] / 255.0, 1/2.0) * 255;
+			copy[i * width + j + width * height * 2] = std::pow(kernel_results[2] / 255.0, 1/2.0) * 255;
 		}
 	}
 

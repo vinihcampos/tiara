@@ -5,7 +5,7 @@
 #include <math.h>
 #include <limits>
 
-tiara::Polygon::Polygon(bool border_, bool fill_, tiara::Color borderColor_, tiara::Color fillColor_){
+tiara::Polygon::Polygon(bool border_, bool fill_, tiara::Color borderColor_, tiara::Color fillColor_, const int & thickness_){
 	border = border_;
 	fill = fill_;
 	borderColor = borderColor_;
@@ -13,9 +13,10 @@ tiara::Polygon::Polygon(bool border_, bool fill_, tiara::Color borderColor_, tia
 
 	miny = std::numeric_limits<int>::max();
 	maxy = std::numeric_limits<int>::min();
+	thickness = thickness_;
 }
 
-tiara::Polygon::Polygon(std::vector<tiara::Point2d> & points_, bool border_, bool fill_, tiara::Color borderColor_, tiara::Color fillColor_){
+tiara::Polygon::Polygon(std::vector<tiara::Point2d> & points_, bool border_, bool fill_, tiara::Color borderColor_, tiara::Color fillColor_, const int & thickness_){
 	points = points_;
 	border = border_;
 	fill = fill_;
@@ -24,6 +25,7 @@ tiara::Polygon::Polygon(std::vector<tiara::Point2d> & points_, bool border_, boo
 
 	miny = std::numeric_limits<int>::max();
 	maxy = std::numeric_limits<int>::min();
+	thickness = thickness_;
 }
 
 tiara::Polygon::~Polygon(){
@@ -123,11 +125,70 @@ void tiara::Polygon::draw(Canvas & canvas){
 	if(border)
 		for(size_t i = 0; i < size; ++i){
 			if(i == size - 1){
-				Line line(points[i], points[0], borderColor, Bresenham);
-				line.draw(canvas);
+				if(thickness == 1){
+					Line line(points[i], points[0], borderColor, Bresenham);
+					line.draw(canvas);	
+				}else{
+					float m = std::abs(points[i].x-points[0].x);
+					if(std::abs(points[i].y - points[0].y) != 0) m /= (float) std::abs(points[i].y - points[0].y);
+
+					if(thickness % 2 != 0){
+						int half = thickness / 2;
+						for(int j = -half; j <= half; ++j){
+							if(m <= 1){
+								Line line(tiara::Point2d(points[i].x+j,points[i].y), tiara::Point2d(points[0].x+j,points[0].y), borderColor, Bresenham);
+								line.draw(canvas);
+							}else if(m > 1){
+								Line line(tiara::Point2d(points[i].x,points[i].y+j), tiara::Point2d(points[0].x,points[0].y+j), borderColor, Bresenham);
+								line.draw(canvas);
+							}
+						}
+					}else{
+						int half = thickness / 2;
+						for(int j = -half+1; j <= half; ++j){
+							if(m <= 1){
+								Line line(tiara::Point2d(points[i].x+j,points[i].y), tiara::Point2d(points[0].x+j,points[0].y), borderColor, Bresenham);
+								line.draw(canvas);
+							}else if(m > 1){
+								Line line(tiara::Point2d(points[i].x,points[i].y+j), tiara::Point2d(points[0].x,points[0].y+j), borderColor, Bresenham);
+								line.draw(canvas);
+							}
+						}
+					}
+				}				
 			}else{
-				Line line(points[i], points[i+1], borderColor, Bresenham);
-				line.draw(canvas);
+				if(thickness == 1){
+					Line line(points[i], points[i+1], borderColor, Bresenham);
+					line.draw(canvas);	
+				}else{
+					float m = std::abs(points[i].x-points[i+1].x);
+					if(std::abs(points[i].y - points[i+1].y) != 0) m /= (float) std::abs(points[i].y - points[i+1].y);
+
+					if(thickness % 2 != 0){
+						int half = thickness / 2;
+						for(int j = -half; j <= half; ++j){
+							if(m <= 1){
+								Line line(tiara::Point2d(points[i].x+j,points[i].y), tiara::Point2d(points[i+1].x+j,points[i+1].y), borderColor, Bresenham);
+								line.draw(canvas);
+							}else if(m > 1){
+								Line line(tiara::Point2d(points[i].x,points[i].y+j), tiara::Point2d(points[i+1].x,points[i+1].y+j), borderColor, Bresenham);
+								line.draw(canvas);
+							}
+						}
+					}else{
+						int half = thickness / 2;
+						for(int j = -half+1; j <= half; ++j){
+							if(m <= 1){
+								Line line(tiara::Point2d(points[i].x+j,points[i].y), tiara::Point2d(points[i+1].x+j,points[i+1].y), borderColor, Bresenham);
+								line.draw(canvas);
+							}else if(m > 1){
+								Line line(tiara::Point2d(points[i].x,points[i].y+j), tiara::Point2d(points[i+1].x,points[i+1].y+j), borderColor, Bresenham);
+								line.draw(canvas);
+							}
+						}
+					}
+				}
+				
 			}
 		}
 }

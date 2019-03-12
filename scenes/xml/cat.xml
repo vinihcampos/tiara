@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scene width="300" height="200" name="cat" type="ppm">
+	<!-- HEAD -->
+	<line x1="75" y1="50" x2="75" y2="199" color="red" alg="dda"  thickness="5"/>
+	<line x1="75" y1="50" x2="100" y2="100" color="red" alg="dda" thickness="5"/>
+	<line x1="100" y1="100" x2="200" y2="100" color="red" alg="Bresenham" thickness="5"/>
+	<line x1="200" y1="100" x2="225" y2="50" color="red" alg="Bresenham" thickness="5"/>
+	<line x1="225" y1="50" x2="225" y2="199" color="red" alg="dda" thickness="5"/>
+
+	<!-- EYES -->
+	<line x1="100" y1="120" x2="125" y2="120" color="yellow" alg="Bresenham"/>
+	<line x1="175" y1="120" x2="200" y2="120" color="yellow" alg="Bresenham"/>
+
+	<!-- NOSE -->
+	<line x1="145" y1="150" x2="155" y2="150" color="red" alg="dda"/>
+	<line x1="150" y1="155" x2="145" y2="150" color="red" alg="Bresenham"/>
+	<line x1="150" y1="155" x2="155" y2="150" color="red" alg="dda"/>
+
+	<!-- MUSTACHE -->
+	<line x1="100" y1="140" x2="120" y2="145" color="blue" alg="dda"/>
+	<line x1="100" y1="153" x2="120" y2="153" color="blue" alg="dda"/>
+	<line x1="100" y1="166" x2="120" y2="161" color="blue" alg="dda"/>
+	<line x1="180" y1="145" x2="200" y2="140" color="blue" alg="Bresenham"/>
+	<line x1="180" y1="153" x2="200" y2="153" color="blue" alg="Bresenham"/>
+	<line x1="180" y1="161" x2="200" y2="166" color="blue" alg="Bresenham"/>
+
+	<arc x="100" y="150" radius="20" border-color="green" fill-color="white" start="0" end="360" thickness="5">
+		<trigger x="100" y="150"/>
+	</arc>
+
+	<polygon border-color="blue" fill-color="white" thickness="5">
+		<p x="100" y="100"/>
+		<p x="120" y="100"/>
+		<p x="120" y="70"/>
+		<p x="150" y="70"/>
+		<p x="160" y="55"/>
+		<p x="140" y="20"/>
+		<p x="120" y="20"/>
+		<p x="120" y="50"/>
+		<p x="70" y="50"/>
+		<p x="70" y="80"/>
+	</polygon>
+
+	<point x="10" y="10" color="yellow"/>
+
+	<line x1="10" y1="10" x2="150" y2="150" color="red" thickness="10" alg="Bresenham"/>
+
+</scene>

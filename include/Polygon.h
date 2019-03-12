@@ -21,11 +21,12 @@ namespace tiara{
 			std::vector<Point2d> points;
 
 			int miny, maxy;
+			int thickness;
 			std::map< int, std::vector<Edge> >  edges;
 		public:
 			~Polygon();
-			Polygon(bool border_ = true, bool fill_ = false, Color borderColor_ = WHITE, Color fillColor_ = WHITE);
-			Polygon(std::vector<Point2d> & points_, bool border_ = true, bool fill_ = false, Color borderColor_ = WHITE, Color fillColor_ = WHITE);
+			Polygon(bool border_ = true, bool fill_ = false, Color borderColor_ = WHITE, Color fillColor_ = WHITE, const int & thickness_ = 1);
+			Polygon(std::vector<Point2d> & points_, bool border_ = true, bool fill_ = false, Color borderColor_ = WHITE, Color fillColor_ = WHITE, const int & thickness_ = 1);
 			void add(Point2d & point);
 			void draw(Canvas & canvas) override;
 	};

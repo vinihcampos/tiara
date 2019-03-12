@@ -1,7 +1,8 @@
 #include "PPM.h"
 #include <string>
+#include <fstream>
 
-std::string tiara::PPM::generator(const tiara::Canvas & canvas){
+std::string tiara::PPM::generator(const tiara::Canvas & canvas, const std::string & fileName){
 	
 	std::string result = "P3\n";
 	result += std::to_string(canvas.getWidth()) + " " + std::to_string(canvas.getHeight()) + "\n";
@@ -15,6 +16,12 @@ std::string tiara::PPM::generator(const tiara::Canvas & canvas){
 		result += "\n";
 	}
 
-	return result;
+	if(fileName.compare("")){
+		std::ofstream file;
+		file.open(fileName + ".ppm");
+		file << result;
+		file.close();
+	}
 
+	return result;
 }

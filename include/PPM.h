@@ -7,7 +7,7 @@
 namespace tiara{
 	class PPM{
 		public:
-			static std::string generator(const Canvas & canvas);
+			static std::string generator(const Canvas & canvas, const std::string & fileName = "");
 	};
 }
 
