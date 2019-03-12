@@ -2,6 +2,7 @@
 #define _COLOR_
 
 #include <string>
+#include <map>
 
 namespace tiara{
 
@@ -20,7 +21,7 @@ namespace tiara{
 
 			Color(const channel r_ = 0, const channel g_ = 0, const channel b_ = 0) : r{r_}, g{g_}, b{b_} {}
 			Color(const Color & color);
-			Color(const std::string & color);
+			Color(const std::string & color, std::map<std::string, Color> & pallete);
 			void paint(const FillingImpl impl = Fill);
 
 			channel& operator[](int idx);

@@ -1,7 +1,11 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <map>
 #include <math.h>
+#include <fstream>
+#include <sstream>
+
 #include "Canvas.h"
 #include "Color.h"
 #include "Point2d.h"
@@ -17,11 +21,12 @@ using namespace std;
 using namespace tiara;
 using namespace tinyxml2;
 
-void processPoint(Canvas & canvas, XMLElement *& pChild);
-void processLine(Canvas & canvas, XMLElement *& pChild);
-void processPolygon(Canvas & canvas, XMLElement *& pChild);
-void processPolyline(Canvas & canvas, XMLElement *& pChild);
-void processArc(Canvas & canvas, XMLElement *& pChild);
+void processPoint(Canvas & canvas, XMLElement *& pChild, std::map<string, Color> & pallete);
+void processLine(Canvas & canvas, XMLElement *& pChild, std::map<string, Color> & pallete);
+void processPolygon(Canvas & canvas, XMLElement *& pChild, std::map<string, Color> & pallete);
+void processPolyline(Canvas & canvas, XMLElement *& pChild, std::map<string, Color> & pallete);
+void processArc(Canvas & canvas, XMLElement *& pChild, std::map<string, Color> & pallete);
+void includePallete(std::map<string, Color> & pallete, const string & fileName);
 
 int main(int argn, char const *argv[]){
 	
@@ -45,19 +50,29 @@ int main(int argn, char const *argv[]){
 		fileName = "scene";
 
 	Canvas canvas(width, height, 1/16.0);
+	std::map<string, Color> pallete;
+
+	for(XMLElement * pChild = pRootElement->FirstChildElement(); pChild != NULL; pChild = pChild->NextSiblingElement()){
+		elementName = pChild->Name();
+		if(elementName.compare("Pallete") == 0 || elementName.compare("pallete") == 0){
+			includePallete(pallete, pChild->Attribute("file"));
+		}
+	}
 
 	for(XMLElement * pChild = pRootElement->FirstChildElement(); pChild != NULL; pChild = pChild->NextSiblingElement()){
 		elementName = pChild->Name();
 		if(elementName.compare("Point") == 0 || elementName.compare("point") == 0){
-			processPoint(canvas, pChild);
+			processPoint(canvas, pChild, pallete);
 		}else if(elementName.compare("Line") == 0 || elementName.compare("line") == 0){
-			processLine(canvas, pChild);
+			processLine(canvas, pChild, pallete);
 		}else if(elementName.compare("Polygon") == 0 || elementName.compare("polygon") == 0){
-			processPolygon(canvas, pChild);
+			processPolygon(canvas, pChild, pallete);
 		}else if(elementName.compare("Polyline") == 0 || elementName.compare("polyline") == 0){
-			processPolyline(canvas, pChild);
+			processPolyline(canvas, pChild, pallete);
 		}else if(elementName.compare("Arc") == 0 || elementName.compare("arc") == 0){
-			processArc(canvas, pChild);
+			processArc(canvas, pChild, pallete);
+		}else if(elementName.compare("Pallete") == 0 || elementName.compare("pallete") == 0){
+			continue;
 		}else{
 			cerr << "The element " << elementName << " is invalid" << endl;
 			return 0;
@@ -70,7 +85,7 @@ int main(int argn, char const *argv[]){
 	return 0;
 }
 
-void processPoint(Canvas & canvas, XMLElement *& pChild){
+void processPoint(Canvas & canvas, XMLElement *& pChild, std::map<string, Color> & pallete){
 	int x = pChild->IntAttribute("x", 0);
 	int y = pChild->IntAttribute("y", 0);
 	string color = "";
@@ -78,11 +93,11 @@ void processPoint(Canvas & canvas, XMLElement *& pChild){
 	if(pChild->FindAttribute("color") != NULL)
 		color = pChild->Attribute("color");
 
-	Color c(color);
+	Color c(color, pallete);
 
 	canvas.pixel(Point2d(x,y), c);
 }
-void processLine(Canvas & canvas, XMLElement *& pChild){
+void processLine(Canvas & canvas, XMLElement *& pChild, std::map<string, Color> & pallete){
 	int x1 = pChild->IntAttribute("x1", 0);
 	int x2 = pChild->IntAttribute("x2", 0);
 	int y1 = pChild->IntAttribute("y1", 0);
@@ -99,7 +114,7 @@ void processLine(Canvas & canvas, XMLElement *& pChild){
 	if(pChild->FindAttribute("alg") != NULL)
 		algorithm = pChild->Attribute("alg");
 
-	Color c(color);
+	Color c(color, pallete);
 
 	Shape * s;
 
@@ -135,7 +150,7 @@ void processLine(Canvas & canvas, XMLElement *& pChild){
 
 	delete s;
 }
-void processPolygon(Canvas & canvas, XMLElement *& pChild){
+void processPolygon(Canvas & canvas, XMLElement *& pChild, std::map<string, Color> & pallete){
 	string borderColor = "", fillColor = "";
 	bool border = false, fill = false;
 	if(pChild->FindAttribute("border-color") != NULL)
@@ -150,11 +165,11 @@ void processPolygon(Canvas & canvas, XMLElement *& pChild){
 
 	if(borderColor.compare("")){
 		border = true;
-		bc = Color(borderColor);
+		bc = Color(borderColor, pallete);
 	}
 	if(fillColor.compare("")){
 		fill = true;
-		fc = Color(fillColor);
+		fc = Color(fillColor, pallete);
 	}
 
 	std::vector<Point2d> points;
@@ -170,14 +185,13 @@ void processPolygon(Canvas & canvas, XMLElement *& pChild){
 
 	delete s;
 }
-
-void processPolyline(Canvas & canvas, XMLElement *& pChild){
+void processPolyline(Canvas & canvas, XMLElement *& pChild, std::map<string, Color> & pallete){
 	int thickness = pChild->IntAttribute("thickness", 1);
 	string color = "";
 	if(pChild->FindAttribute("color") != NULL)
 		color = pChild->Attribute("color");
 
-	Color bc(color);
+	Color bc(color, pallete);
 
 	std::vector<Point2d> points;
 
@@ -187,13 +201,12 @@ void processPolyline(Canvas & canvas, XMLElement *& pChild){
 		points.push_back(Point2d(x,y));
 	}
 
-	Shape * s = new Polyline(points, color, thickness);
+	Shape * s = new Polyline(points, bc, thickness);
 	s->draw(canvas);
 
 	delete s;
 }
-
-void processArc(Canvas & canvas, XMLElement *& pChild){
+void processArc(Canvas & canvas, XMLElement *& pChild, std::map<string, Color> & pallete){
 	int x = pChild->IntAttribute("x", 0);
 	int y = pChild->IntAttribute("y", 0);
 	int thickness = pChild->IntAttribute("thickness", 1);
@@ -206,7 +219,7 @@ void processArc(Canvas & canvas, XMLElement *& pChild){
 	if(pChild->FindAttribute("border-color") != NULL)
 		borderColor = pChild->Attribute("border-color");
 
-	Color bc(borderColor);
+	Color bc(borderColor, pallete);
 	Shape * s;
 	
 	if(thickness == 1){
@@ -230,7 +243,7 @@ void processArc(Canvas & canvas, XMLElement *& pChild){
 	if(pChild->FindAttribute("fill-color") != NULL)
 		fillColor = pChild->Attribute("fill-color");
 
-	Color fc(fillColor);
+	Color fc(fillColor, pallete);
 
 	vector<Point2d> triggers;
 
@@ -245,4 +258,20 @@ void processArc(Canvas & canvas, XMLElement *& pChild){
 	}
 
 	delete s;
+}
+void includePallete(std::map<string, Color> & pallete, const string & fileName){
+	ifstream file (fileName, std::ifstream::in);
+	string line;
+
+	string nameColor;
+	int r,g,b;
+
+	while(getline(file, line)){
+		stringstream ss;
+		ss << line;
+		ss >> nameColor >> r >> g >> b;
+		pallete[nameColor] = Color(r,g,b);
+	}
+
+	file.close();
 }

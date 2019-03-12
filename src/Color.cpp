@@ -7,8 +7,14 @@ tiara::Color::Color(const Color & color){
 	b = color.b;
 }
 
-tiara::Color::Color(const std::string & color){
-	if(!color.compare("white") || !color.compare("WHITE")){
+tiara::Color::Color(const std::string & color, std::map<std::string, Color> & pallete){
+
+	if(pallete.find(color) != pallete.end()){
+		Color c = pallete[color];
+		r = c.r;
+		g = c.g;
+		b = c.b;
+	}else if(!color.compare("white") || !color.compare("WHITE")){
 		r = WHITE.r;
 		g = WHITE.g;
 		b = WHITE.b;
