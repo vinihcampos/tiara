@@ -10,6 +10,7 @@
 #include "Arc.h"
 #include "PPM.h"
 #include "Polygon.h"
+#include "Polyline.h"
 #include "tinyxml2.h"
 
 using namespace std;
@@ -19,6 +20,7 @@ using namespace tinyxml2;
 void processPoint(Canvas & canvas, XMLElement *& pChild);
 void processLine(Canvas & canvas, XMLElement *& pChild);
 void processPolygon(Canvas & canvas, XMLElement *& pChild);
+void processPolyline(Canvas & canvas, XMLElement *& pChild);
 void processArc(Canvas & canvas, XMLElement *& pChild);
 
 int main(int argn, char const *argv[]){
@@ -52,6 +54,8 @@ int main(int argn, char const *argv[]){
 			processLine(canvas, pChild);
 		}else if(elementName.compare("Polygon") == 0 || elementName.compare("polygon") == 0){
 			processPolygon(canvas, pChild);
+		}else if(elementName.compare("Polyline") == 0 || elementName.compare("polyline") == 0){
+			processPolyline(canvas, pChild);
 		}else if(elementName.compare("Arc") == 0 || elementName.compare("arc") == 0){
 			processArc(canvas, pChild);
 		}else{
@@ -166,6 +170,29 @@ void processPolygon(Canvas & canvas, XMLElement *& pChild){
 
 	delete s;
 }
+
+void processPolyline(Canvas & canvas, XMLElement *& pChild){
+	int thickness = pChild->IntAttribute("thickness", 1);
+	string color = "";
+	if(pChild->FindAttribute("color") != NULL)
+		color = pChild->Attribute("color");
+
+	Color bc(color);
+
+	std::vector<Point2d> points;
+
+	for(XMLElement * pGrandchild = pChild->FirstChildElement(); pGrandchild != NULL; pGrandchild = pGrandchild->NextSiblingElement()){
+		int x = pGrandchild->IntAttribute("x", 0);
+		int y = pGrandchild->IntAttribute("y", 0);
+		points.push_back(Point2d(x,y));
+	}
+
+	Shape * s = new Polyline(points, color, thickness);
+	s->draw(canvas);
+
+	delete s;
+}
+
 void processArc(Canvas & canvas, XMLElement *& pChild){
 	int x = pChild->IntAttribute("x", 0);
 	int y = pChild->IntAttribute("y", 0);

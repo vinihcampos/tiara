@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<scene width="300" height="200" name="cat" type="ppm">
+<scene width="300" height="200" name="scenes/images/cat" type="ppm">
 	<!-- HEAD -->
-	<line x1="75" y1="50" x2="75" y2="199" color="red" alg="dda"  thickness="5"/>
-	<line x1="75" y1="50" x2="100" y2="100" color="red" alg="dda" thickness="5"/>
-	<line x1="100" y1="100" x2="200" y2="100" color="red" alg="Bresenham" thickness="5"/>
-	<line x1="200" y1="100" x2="225" y2="50" color="red" alg="Bresenham" thickness="5"/>
-	<line x1="225" y1="50" x2="225" y2="199" color="red" alg="dda" thickness="5"/>
+
+	<polyline color="red" thickness="10">
+		<p x="75" y="200"/>
+		<p x="75" y="50"/>
+		<p x="100" y="100"/>
+		<p x="200" y="100"/>
+		<p x="225" y="50"/>
+		<p x="225" y="200"/>
+	</polyline>
+
+	<!--<line x1="75" y1="50" x2="75" y2="199" color="red" alg="dda"  thickness="5"/>-->
+	<!--<line x1="75" y1="50" x2="100" y2="100" color="red" alg="dda" thickness="5"/>-->
+	<!--<line x1="100" y1="100" x2="200" y2="100" color="red" alg="Bresenham" thickness="5"/>-->
+	<!--<line x1="200" y1="100" x2="225" y2="50" color="red" alg="Bresenham" thickness="5"/>-->
+	<!--<line x1="225" y1="50" x2="225" y2="199" color="red" alg="dda" thickness="5"/>-->
 
 	<!-- EYES -->
 	<line x1="100" y1="120" x2="125" y2="120" color="yellow" alg="Bresenham"/>
