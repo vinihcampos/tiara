@@ -1,0 +1,7 @@
+<scene width="300" height="200" name="scenes/images/circle" centerx="150" centery="100">
+	<arc x="0" y="0" radius="20" border-color="olive" fill-color="purple" thickness="5">
+		<trigger x="0" y="0"/>
+	</arc>
+
+	<pallete file="palletes/basic.txt"/>
+</scene>

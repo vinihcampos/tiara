@@ -28,6 +28,8 @@ void processPolyline(Canvas & canvas, XMLElement *& pChild, std::map<string, Col
 void processArc(Canvas & canvas, XMLElement *& pChild, std::map<string, Color> & pallete);
 void includePallete(std::map<string, Color> & pallete, const string & fileName);
 
+int centerx, centery;
+
 int main(int argn, char const *argv[]){
 	
 	if(argn < 2){
@@ -44,6 +46,9 @@ int main(int argn, char const *argv[]){
 
 	width = pRootElement->IntAttribute("width", 800);
 	height = pRootElement->IntAttribute("height", 600);
+	centerx = pRootElement->IntAttribute("centerx", 0);
+	centery = pRootElement->IntAttribute("centery", 0);
+
 	if(pRootElement->Attribute("name") != NULL) 
 		fileName = pRootElement->Attribute("name");
 	else
@@ -86,8 +91,8 @@ int main(int argn, char const *argv[]){
 }
 
 void processPoint(Canvas & canvas, XMLElement *& pChild, std::map<string, Color> & pallete){
-	int x = pChild->IntAttribute("x", 0);
-	int y = pChild->IntAttribute("y", 0);
+	int x = pChild->IntAttribute("x", 0) + centerx;
+	int y = pChild->IntAttribute("y", 0) + centery;
 	string color = "";
 
 	if(pChild->FindAttribute("color") != NULL)
@@ -98,10 +103,10 @@ void processPoint(Canvas & canvas, XMLElement *& pChild, std::map<string, Color>
 	canvas.pixel(Point2d(x,y), c);
 }
 void processLine(Canvas & canvas, XMLElement *& pChild, std::map<string, Color> & pallete){
-	int x1 = pChild->IntAttribute("x1", 0);
-	int x2 = pChild->IntAttribute("x2", 0);
-	int y1 = pChild->IntAttribute("y1", 0);
-	int y2 = pChild->IntAttribute("y2", 0);
+	int x1 = pChild->IntAttribute("x1", 0) + centerx;
+	int x2 = pChild->IntAttribute("x2", 0) + centerx;
+	int y1 = pChild->IntAttribute("y1", 0) + centery;
+	int y2 = pChild->IntAttribute("y2", 0) + centery;
 	int thickness = pChild->IntAttribute("thickness", 1);
 
 	if(thickness == 0)
@@ -175,8 +180,8 @@ void processPolygon(Canvas & canvas, XMLElement *& pChild, std::map<string, Colo
 	std::vector<Point2d> points;
 
 	for(XMLElement * pGrandchild = pChild->FirstChildElement(); pGrandchild != NULL; pGrandchild = pGrandchild->NextSiblingElement()){
-		int x = pGrandchild->IntAttribute("x", 0);
-		int y = pGrandchild->IntAttribute("y", 0);
+		int x = pGrandchild->IntAttribute("x", 0) + centerx;
+		int y = pGrandchild->IntAttribute("y", 0) + centery;
 		points.push_back(Point2d(x,y));
 	}
 
@@ -196,8 +201,8 @@ void processPolyline(Canvas & canvas, XMLElement *& pChild, std::map<string, Col
 	std::vector<Point2d> points;
 
 	for(XMLElement * pGrandchild = pChild->FirstChildElement(); pGrandchild != NULL; pGrandchild = pGrandchild->NextSiblingElement()){
-		int x = pGrandchild->IntAttribute("x", 0);
-		int y = pGrandchild->IntAttribute("y", 0);
+		int x = pGrandchild->IntAttribute("x", 0) + centerx;
+		int y = pGrandchild->IntAttribute("y", 0) + centery;
 		points.push_back(Point2d(x,y));
 	}
 
@@ -207,8 +212,8 @@ void processPolyline(Canvas & canvas, XMLElement *& pChild, std::map<string, Col
 	delete s;
 }
 void processArc(Canvas & canvas, XMLElement *& pChild, std::map<string, Color> & pallete){
-	int x = pChild->IntAttribute("x", 0);
-	int y = pChild->IntAttribute("y", 0);
+	int x = pChild->IntAttribute("x", 0) + centerx;
+	int y = pChild->IntAttribute("y", 0) + centery;
 	int thickness = pChild->IntAttribute("thickness", 1);
 	float radius = pChild->FloatAttribute("radius", 0.0);
 
@@ -248,8 +253,8 @@ void processArc(Canvas & canvas, XMLElement *& pChild, std::map<string, Color> &
 	vector<Point2d> triggers;
 
 	for(XMLElement * pGrandchild = pChild->FirstChildElement(); pGrandchild != NULL; pGrandchild = pGrandchild->NextSiblingElement()){
-		int x = pGrandchild->IntAttribute("x", 0);
-		int y = pGrandchild->IntAttribute("y", 0);
+		int x = pGrandchild->IntAttribute("x", 0) + centerx;
+		int y = pGrandchild->IntAttribute("y", 0) + centery;
 		triggers.push_back(Point2d(x,y));
 	}
 
