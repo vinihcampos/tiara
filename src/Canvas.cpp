@@ -50,29 +50,6 @@ void tiara::Canvas::pixels(const Point2d ps[], const size_t & p_size, const Colo
 		pixel(ps[i], color);
 }
 
-void tiara::Canvas::rectangle(const Point2d & tl, const Point2d & br, const Color & color, const bool filled){
-	
-	// Draw horizontal lines
-	for(size_t c = tl.y; c <= br.y; ++c){
-		pixel(Point2d(tl.x, c), color);
-		pixel(Point2d(br.x, c), color);
-	}
-
-	// Draw vertical lines
-	for(size_t r = tl.y; r <= br.y; ++r){
-		pixel(Point2d(r, tl.y), color);
-		pixel(Point2d(r, br.y), color);
-	}
-
-	if(filled){
-		for(size_t r = tl.x + 1; r < br.x; ++r){
-			for(size_t c = tl.y + 1; c < br.y; ++c){
-				pixel(Point2d(r,c), color);
-			}
-		}
-	}	
-}
-
 void tiara::Canvas::antialiasing(){
 	std::unique_ptr<component_t[]> copy = std::make_unique<component_t[]>(width * height * 3);
 	float * kernel_results = new float[3];

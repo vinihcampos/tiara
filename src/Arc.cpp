@@ -70,10 +70,3 @@ void tiara::Arc::draw(Canvas & canvas){
         }
 	}
 }
-
-float tiara::Arc::cosine(Point2d p, Point2d q){
-	float dist = std::sqrt( std::pow(p.x - q.x, 2) + std::pow(p.y - q.y, 2));
-	float twice_r_square = 2 * (radius * radius);
-
-	return std::acos( (twice_r_square - dist) / twice_r_square );
-}

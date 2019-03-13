@@ -1,0 +1,121 @@
+\hypertarget{classtinyxml2_1_1XMLDeclaration}{}\section{tinyxml2\+::X\+M\+L\+Declaration Class Reference}
+\label{classtinyxml2_1_1XMLDeclaration}\index{tinyxml2::XMLDeclaration@{tinyxml2::XMLDeclaration}}
+
+
+{\ttfamily \#include $<$tinyxml2.\+h$>$}
+
+Inheritance diagram for tinyxml2\+::X\+M\+L\+Declaration\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classtinyxml2_1_1XMLDeclaration}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtinyxml2_1_1XMLDeclaration_a159d8ac45865215e88059ea1e5b52fc5}\label{classtinyxml2_1_1XMLDeclaration_a159d8ac45865215e88059ea1e5b52fc5}} 
+virtual \mbox{\hyperlink{classtinyxml2_1_1XMLDeclaration}{X\+M\+L\+Declaration}} $\ast$ \mbox{\hyperlink{classtinyxml2_1_1XMLDeclaration_a159d8ac45865215e88059ea1e5b52fc5}{To\+Declaration}} ()
+\begin{DoxyCompactList}\small\item\em Safely cast to a Declaration, or null. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classtinyxml2_1_1XMLDeclaration_aa20c3315b18c3b88830dccf5c493259b}\label{classtinyxml2_1_1XMLDeclaration_aa20c3315b18c3b88830dccf5c493259b}} 
+virtual const \mbox{\hyperlink{classtinyxml2_1_1XMLDeclaration}{X\+M\+L\+Declaration}} $\ast$ {\bfseries To\+Declaration} () const
+\item 
+virtual bool \mbox{\hyperlink{classtinyxml2_1_1XMLDeclaration_a5f376019fb34752eb248548f42f32045}{Accept}} (\mbox{\hyperlink{classtinyxml2_1_1XMLVisitor}{X\+M\+L\+Visitor}} $\ast$visitor) const
+\item 
+virtual \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{X\+M\+L\+Node}} $\ast$ \mbox{\hyperlink{classtinyxml2_1_1XMLDeclaration_a118d47518dd9e522644e42efa259aed7}{Shallow\+Clone}} (\mbox{\hyperlink{classtinyxml2_1_1XMLDocument}{X\+M\+L\+Document}} $\ast$document) const
+\item 
+virtual bool \mbox{\hyperlink{classtinyxml2_1_1XMLDeclaration_aa26b70011694e9b9e9480b929e9b78d6}{Shallow\+Equal}} (const \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{X\+M\+L\+Node}} $\ast$compare) const
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtinyxml2_1_1XMLDeclaration_aef9586f2ce5df5feba74dde49a242b06}\label{classtinyxml2_1_1XMLDeclaration_aef9586f2ce5df5feba74dde49a242b06}} 
+{\bfseries X\+M\+L\+Declaration} (\mbox{\hyperlink{classtinyxml2_1_1XMLDocument}{X\+M\+L\+Document}} $\ast$doc)
+\item 
+\mbox{\Hypertarget{classtinyxml2_1_1XMLDeclaration_a85e217f63cf47c65f81a44d360927cf7}\label{classtinyxml2_1_1XMLDeclaration_a85e217f63cf47c65f81a44d360927cf7}} 
+char $\ast$ {\bfseries Parse\+Deep} (char $\ast$p, \mbox{\hyperlink{classtinyxml2_1_1StrPair}{Str\+Pair}} $\ast$parent\+End\+Tag, int $\ast$cur\+Line\+Num\+Ptr)
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtinyxml2_1_1XMLDeclaration_a5229cc0b31f034f93289af27ec3e2836}\label{classtinyxml2_1_1XMLDeclaration_a5229cc0b31f034f93289af27ec3e2836}} 
+{\bfseries X\+M\+L\+Declaration} (const \mbox{\hyperlink{classtinyxml2_1_1XMLDeclaration}{X\+M\+L\+Declaration}} \&)
+\item 
+\mbox{\Hypertarget{classtinyxml2_1_1XMLDeclaration_a79eb518c2c2b1b99a122a5d5a308b7ee}\label{classtinyxml2_1_1XMLDeclaration_a79eb518c2c2b1b99a122a5d5a308b7ee}} 
+\mbox{\hyperlink{classtinyxml2_1_1XMLDeclaration}{X\+M\+L\+Declaration}} \& {\bfseries operator=} (const \mbox{\hyperlink{classtinyxml2_1_1XMLDeclaration}{X\+M\+L\+Declaration}} \&)
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtinyxml2_1_1XMLDeclaration_a4eee3bda60c60a30e4e8cd4ea91c4c6e}\label{classtinyxml2_1_1XMLDeclaration_a4eee3bda60c60a30e4e8cd4ea91c4c6e}} 
+class {\bfseries X\+M\+L\+Document}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+In correct X\+ML the declaration is the first entry in the file. \begin{DoxyVerb}    <?xml version="1.0" standalone="yes"?>
+\end{DoxyVerb}
+
+
+Tiny\+X\+M\+L-\/2 will happily read or write files without a declaration, however.
+
+The text of the declaration isn\textquotesingle{}t interpreted. It is parsed and written as a string. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classtinyxml2_1_1XMLDeclaration_a5f376019fb34752eb248548f42f32045}\label{classtinyxml2_1_1XMLDeclaration_a5f376019fb34752eb248548f42f32045}} 
+\index{tinyxml2::XMLDeclaration@{tinyxml2::XMLDeclaration}!Accept@{Accept}}
+\index{Accept@{Accept}!tinyxml2::XMLDeclaration@{tinyxml2::XMLDeclaration}}
+\subsubsection{\texorpdfstring{Accept()}{Accept()}}
+{\footnotesize\ttfamily virtual bool tinyxml2\+::\+X\+M\+L\+Declaration\+::\+Accept (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classtinyxml2_1_1XMLVisitor}{X\+M\+L\+Visitor}} $\ast$}]{visitor }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Accept a hierarchical visit of the nodes in the Tiny\+X\+M\+L-\/2 D\+OM. Every node in the X\+ML tree will be conditionally visited and the host will be called back via the \mbox{\hyperlink{classtinyxml2_1_1XMLVisitor}{X\+M\+L\+Visitor}} interface.
+
+This is essentially a S\+AX interface for Tiny\+X\+M\+L-\/2. (Note however it doesn\textquotesingle{}t re-\/parse the X\+ML for the callbacks, so the performance of Tiny\+X\+M\+L-\/2 is unchanged by using this interface versus any other.)
+
+The interface has been based on ideas from\+:
+
+
+\begin{DoxyItemize}
+\item \href{http://www.saxproject.org/}{\texttt{ http\+://www.\+saxproject.\+org/}}
+\item \href{http://c2.com/cgi/wiki?HierarchicalVisitorPattern}{\texttt{ http\+://c2.\+com/cgi/wiki?\+Hierarchical\+Visitor\+Pattern}}
+\end{DoxyItemize}
+
+Which are both good references for \char`\"{}visiting\char`\"{}.
+
+An example of using \mbox{\hyperlink{classtinyxml2_1_1XMLDeclaration_a5f376019fb34752eb248548f42f32045}{Accept()}}\+: \begin{DoxyVerb}XMLPrinter printer;
+tinyxmlDoc.Accept( &printer );
+const char* xmlcstr = printer.CStr();
+\end{DoxyVerb}
+ 
+
+Implements \mbox{\hyperlink{classtinyxml2_1_1XMLNode_a81e66df0a44c67a7af17f3b77a152785}{tinyxml2\+::\+X\+M\+L\+Node}}.
+
+\mbox{\Hypertarget{classtinyxml2_1_1XMLDeclaration_a118d47518dd9e522644e42efa259aed7}\label{classtinyxml2_1_1XMLDeclaration_a118d47518dd9e522644e42efa259aed7}} 
+\index{tinyxml2::XMLDeclaration@{tinyxml2::XMLDeclaration}!ShallowClone@{ShallowClone}}
+\index{ShallowClone@{ShallowClone}!tinyxml2::XMLDeclaration@{tinyxml2::XMLDeclaration}}
+\subsubsection{\texorpdfstring{ShallowClone()}{ShallowClone()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{X\+M\+L\+Node}}$\ast$ tinyxml2\+::\+X\+M\+L\+Declaration\+::\+Shallow\+Clone (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classtinyxml2_1_1XMLDocument}{X\+M\+L\+Document}} $\ast$}]{document }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Make a copy of this node, but not its children. You may pass in a Document pointer that will be the owner of the new Node. If the \textquotesingle{}document\textquotesingle{} is null, then the node returned will be allocated from the current Document. (this-\/$>$\mbox{\hyperlink{classtinyxml2_1_1XMLNode_af343d1ef0b45c0020e62d784d7e67a68}{Get\+Document()}})
+
+Note\+: if called on a \mbox{\hyperlink{classtinyxml2_1_1XMLDocument}{X\+M\+L\+Document}}, this will return null. 
+
+Implements \mbox{\hyperlink{classtinyxml2_1_1XMLNode_a8402cbd3129d20e9e6024bbcc0531283}{tinyxml2\+::\+X\+M\+L\+Node}}.
+
+\mbox{\Hypertarget{classtinyxml2_1_1XMLDeclaration_aa26b70011694e9b9e9480b929e9b78d6}\label{classtinyxml2_1_1XMLDeclaration_aa26b70011694e9b9e9480b929e9b78d6}} 
+\index{tinyxml2::XMLDeclaration@{tinyxml2::XMLDeclaration}!ShallowEqual@{ShallowEqual}}
+\index{ShallowEqual@{ShallowEqual}!tinyxml2::XMLDeclaration@{tinyxml2::XMLDeclaration}}
+\subsubsection{\texorpdfstring{ShallowEqual()}{ShallowEqual()}}
+{\footnotesize\ttfamily virtual bool tinyxml2\+::\+X\+M\+L\+Declaration\+::\+Shallow\+Equal (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{X\+M\+L\+Node}} $\ast$}]{compare }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Test if 2 nodes are the same, but don\textquotesingle{}t test children. The 2 nodes do not need to be in the same Document.
+
+Note\+: if called on a \mbox{\hyperlink{classtinyxml2_1_1XMLDocument}{X\+M\+L\+Document}}, this will return false. 
+
+Implements \mbox{\hyperlink{classtinyxml2_1_1XMLNode_a7ce18b751c3ea09eac292dca264f9226}{tinyxml2\+::\+X\+M\+L\+Node}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/tinyxml2.\+h\end{DoxyCompactItemize}

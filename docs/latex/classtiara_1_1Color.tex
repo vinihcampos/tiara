@@ -1,0 +1,57 @@
+\hypertarget{classtiara_1_1Color}{}\section{tiara\+::Color Class Reference}
+\label{classtiara_1_1Color}\index{tiara::Color@{tiara::Color}}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtiara_1_1Color_a3fd08f0117d271896edd883332c3a833}\label{classtiara_1_1Color_a3fd08f0117d271896edd883332c3a833}} 
+typedef unsigned char {\bfseries channel}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtiara_1_1Color_a1b0ade8a4021addb72e5a7f100435a39}\label{classtiara_1_1Color_a1b0ade8a4021addb72e5a7f100435a39}} 
+{\bfseries Color} (const channel r\+\_\+=0, const channel g\+\_\+=0, const channel b\+\_\+=0)
+\item 
+\mbox{\Hypertarget{classtiara_1_1Color_a91a51440d9bda5958f2820950667708d}\label{classtiara_1_1Color_a91a51440d9bda5958f2820950667708d}} 
+{\bfseries Color} (const \mbox{\hyperlink{classtiara_1_1Color}{Color}} \&color)
+\item 
+\mbox{\Hypertarget{classtiara_1_1Color_add30f88a3494b55e5f5cbec18f9f2e52}\label{classtiara_1_1Color_add30f88a3494b55e5f5cbec18f9f2e52}} 
+{\bfseries Color} (const std\+::string \&color, std\+::map$<$ std\+::string, \mbox{\hyperlink{classtiara_1_1Color}{Color}} $>$ \&pallete)
+\item 
+\mbox{\Hypertarget{classtiara_1_1Color_aae22697dc2739d7211ffb4b89da159d5}\label{classtiara_1_1Color_aae22697dc2739d7211ffb4b89da159d5}} 
+void {\bfseries paint} (const Filling\+Impl impl=Fill)
+\item 
+\mbox{\Hypertarget{classtiara_1_1Color_aae9ea3e120a836090d21672e5fab6067}\label{classtiara_1_1Color_aae9ea3e120a836090d21672e5fab6067}} 
+channel \& {\bfseries operator\mbox{[}$\,$\mbox{]}} (int idx)
+\item 
+\mbox{\Hypertarget{classtiara_1_1Color_a697f32cbb0fca23ed6ce8570d2cca0ae}\label{classtiara_1_1Color_a697f32cbb0fca23ed6ce8570d2cca0ae}} 
+const channel \& {\bfseries operator\mbox{[}$\,$\mbox{]}} (int idx) const
+\item 
+\mbox{\Hypertarget{classtiara_1_1Color_aeb3dc8b04527117fa7e21e5dd2a6f672}\label{classtiara_1_1Color_aeb3dc8b04527117fa7e21e5dd2a6f672}} 
+bool {\bfseries operator==} (const \mbox{\hyperlink{classtiara_1_1Color}{Color}} \&color) const
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtiara_1_1Color_aebe87e3ed9ebd1d9cabc392cf15b1300}\label{classtiara_1_1Color_aebe87e3ed9ebd1d9cabc392cf15b1300}} 
+channel {\bfseries r}
+\item 
+\mbox{\Hypertarget{classtiara_1_1Color_a00cd31813d8177b21025a3110b04b5d3}\label{classtiara_1_1Color_a00cd31813d8177b21025a3110b04b5d3}} 
+channel {\bfseries g}
+\item 
+\mbox{\Hypertarget{classtiara_1_1Color_a2587963d8cddfa876072780f635b3ed4}\label{classtiara_1_1Color_a2587963d8cddfa876072780f635b3ed4}} 
+channel {\bfseries b}
+\end{DoxyCompactItemize}
+\subsection*{Private Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtiara_1_1Color_a5bb5fb995bf5ccbd6d59f188a504c0c8}\label{classtiara_1_1Color_a5bb5fb995bf5ccbd6d59f188a504c0c8}} 
+enum {\bfseries Filling\+Impl} \{ {\bfseries Fill} = 1, 
+{\bfseries Scan\+Line} = 2
+ \}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/Color.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,58 @@
+\hypertarget{classtiara_1_1Polygon}{}\section{tiara\+::Polygon Class Reference}
+\label{classtiara_1_1Polygon}\index{tiara::Polygon@{tiara::Polygon}}
+Inheritance diagram for tiara\+::Polygon\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classtiara_1_1Polygon}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtiara_1_1Polygon_a827cc2e528e055f103bb5aeca22752d0}\label{classtiara_1_1Polygon_a827cc2e528e055f103bb5aeca22752d0}} 
+{\bfseries Polygon} (bool border\+\_\+=true, bool fill\+\_\+=false, \mbox{\hyperlink{classtiara_1_1Color}{Color}} border\+Color\+\_\+=W\+H\+I\+TE, \mbox{\hyperlink{classtiara_1_1Color}{Color}} fill\+Color\+\_\+=W\+H\+I\+TE, const int \&thickness\+\_\+=1)
+\item 
+\mbox{\Hypertarget{classtiara_1_1Polygon_af81f0e107fb5f60340af61c49d4dfb53}\label{classtiara_1_1Polygon_af81f0e107fb5f60340af61c49d4dfb53}} 
+{\bfseries Polygon} (std\+::vector$<$ \mbox{\hyperlink{classtiara_1_1Point2d}{Point2d}} $>$ \&points\+\_\+, bool border\+\_\+=true, bool fill\+\_\+=false, \mbox{\hyperlink{classtiara_1_1Color}{Color}} border\+Color\+\_\+=W\+H\+I\+TE, \mbox{\hyperlink{classtiara_1_1Color}{Color}} fill\+Color\+\_\+=W\+H\+I\+TE, const int \&thickness\+\_\+=1)
+\item 
+\mbox{\Hypertarget{classtiara_1_1Polygon_ac183b2154082dc5726813c2c3b2f0817}\label{classtiara_1_1Polygon_ac183b2154082dc5726813c2c3b2f0817}} 
+void {\bfseries add} (\mbox{\hyperlink{classtiara_1_1Point2d}{Point2d}} \&point)
+\item 
+\mbox{\Hypertarget{classtiara_1_1Polygon_a3dc6d23d09757195781a984de8b46350}\label{classtiara_1_1Polygon_a3dc6d23d09757195781a984de8b46350}} 
+void {\bfseries draw} (\mbox{\hyperlink{classtiara_1_1Canvas}{Canvas}} \&canvas) override
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtiara_1_1Polygon_a960381ab34bd0f61b5f932f1c6897c74}\label{classtiara_1_1Polygon_a960381ab34bd0f61b5f932f1c6897c74}} 
+\mbox{\hyperlink{classtiara_1_1Color}{Color}} {\bfseries border\+Color}
+\item 
+\mbox{\Hypertarget{classtiara_1_1Polygon_a2909b469fd9f83e0d604c84f14667820}\label{classtiara_1_1Polygon_a2909b469fd9f83e0d604c84f14667820}} 
+\mbox{\hyperlink{classtiara_1_1Color}{Color}} {\bfseries fill\+Color}
+\item 
+\mbox{\Hypertarget{classtiara_1_1Polygon_a211c7a6202d9d32ba8683ffda1bec7e3}\label{classtiara_1_1Polygon_a211c7a6202d9d32ba8683ffda1bec7e3}} 
+bool {\bfseries border}
+\item 
+\mbox{\Hypertarget{classtiara_1_1Polygon_ac90129cd7ac7dc6350ea68221b7d0c69}\label{classtiara_1_1Polygon_ac90129cd7ac7dc6350ea68221b7d0c69}} 
+bool {\bfseries fill}
+\item 
+\mbox{\Hypertarget{classtiara_1_1Polygon_ad5ac3b48d126711041b7746cb8bca821}\label{classtiara_1_1Polygon_ad5ac3b48d126711041b7746cb8bca821}} 
+std\+::vector$<$ \mbox{\hyperlink{classtiara_1_1Point2d}{Point2d}} $>$ {\bfseries points}
+\item 
+\mbox{\Hypertarget{classtiara_1_1Polygon_aaef500ea7d59fe4ab9e64d98bb3f2db4}\label{classtiara_1_1Polygon_aaef500ea7d59fe4ab9e64d98bb3f2db4}} 
+int {\bfseries miny}
+\item 
+\mbox{\Hypertarget{classtiara_1_1Polygon_a183e77c99f4976a7149913ec486c48a1}\label{classtiara_1_1Polygon_a183e77c99f4976a7149913ec486c48a1}} 
+int {\bfseries maxy}
+\item 
+\mbox{\Hypertarget{classtiara_1_1Polygon_a5f5496bf58176512113e3e2e69a286cb}\label{classtiara_1_1Polygon_a5f5496bf58176512113e3e2e69a286cb}} 
+int {\bfseries thickness}
+\item 
+\mbox{\Hypertarget{classtiara_1_1Polygon_a4fbb09c4d53ddd64ae868cc2cd021286}\label{classtiara_1_1Polygon_a4fbb09c4d53ddd64ae868cc2cd021286}} 
+std\+::map$<$ int, std\+::vector$<$ \mbox{\hyperlink{classtiara_1_1Edge}{Edge}} $>$ $>$ {\bfseries edges}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/Polygon.\+h\end{DoxyCompactItemize}

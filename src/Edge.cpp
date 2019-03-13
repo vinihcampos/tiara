@@ -2,7 +2,7 @@
 
 #include <math.h>
 
-tiara::Edge::Edge(Point2d & p_, Point2d & q_, float x_frac_) : p{p_}, q{q_}, x_frac{x_frac_}{
+tiara::Edge::Edge(Point2d & p_, Point2d & q_) : p{p_}, q{q_}{
 	if(p.y < q.y) xmin = p.x;
 	else xmin = q.x;
 
