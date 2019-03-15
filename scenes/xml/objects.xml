@@ -3,7 +3,7 @@
 		<trigger x="100" y="150"/>
 	</arc>
 
-	<polygon border-color="blue" fill-color="white" thickness="5">
+	<polygon border-color="blue" fill-color="white" thickness="1">
 		<p x="100" y="100"/>
 		<p x="120" y="100"/>
 		<p x="120" y="70"/>
@@ -20,5 +20,5 @@
 
 	<line x1="10" y1="10" x2="150" y2="150" color="red" thickness="10" alg="Bresenham"/>
 
-	<pallete file="palletes/basic.txt"/>
+	<palette file="palettes/basic.txt"/>
 </scene>

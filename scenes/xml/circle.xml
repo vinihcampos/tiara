@@ -3,5 +3,5 @@
 		<trigger x="0" y="0"/>
 	</arc>
 
-	<pallete file="palletes/basic.txt"/>
+	<palette file="palettes/basic.txt"/>
 </scene>

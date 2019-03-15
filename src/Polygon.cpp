@@ -100,7 +100,7 @@ void tiara::Polygon::draw(Canvas & canvas){
 					}
 				}else{
 					if(!bit){
-						Line line(Point2d((int) active[j].xmin, y), Point2d((int) active[j+1].xmin, y), fillColor, Bresenham);
+						Line line(Point2d(std::ceil(active[j].xmin), y), Point2d(std::ceil(active[j+1].xmin), y), fillColor, Bresenham);
 						line.draw(canvas);
 						bit = 1;
 					}else{

@@ -1,0 +1,27 @@
+<scene width="800" height="600" name="scenes/images/star">
+	<polygon border-color="white" fill-color="blue" thickness="1">
+		<!--<p x="300" y="150"/>-->
+		<!--<p x="400" y="300"/>-->
+		<!--<p x="550" y="300"/>-->
+		<!--<p x="400" y="400"/>-->
+		<!--<p x="500" y="600"/>-->
+		<!--<p x="300" y="480"/>-->
+		<!--<p x="100" y="600"/>-->
+		<!--<p x="200" y="400"/>-->
+		<!--<p x="50" y="300"/>-->
+		<!--<p x="200" y="300"/>-->
+
+		<p x="100" y="200"/>
+		<p x="500" y="500"/>
+		<p x="300" y="150"/>
+		<p x="100" y="500"/>
+		<p x="500" y="200"/>
+	</polygon>
+
+	<polygon border-color="white" fill-color="red" thickness="1">
+		<p x="600" y="200"/>
+		<p x="750" y="180"/>
+		<p x="400" y="500"/>
+		<p x="790" y="350"/>
+	</polygon>
+</scene>
