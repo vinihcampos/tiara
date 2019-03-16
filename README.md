@@ -213,6 +213,10 @@ Fill the canvas with a color until find another, which was set as limit color. I
 
 </details>
 
+## Doxygen
+
+For more details, see the ![reference](https://vinihcampos.github.io/tiara/).
+
 ## Author
 
 [![Vinicius Campos](https://avatars.githubusercontent.com/Vinihcampos?s=100)<br /><sub>Vinicius Campos</sub>](http://lattes.cnpq.br/4806707968253342)<br />[👀](https://github.com/Vinihcampos/tiara/commits?author=Vinihcampos)
