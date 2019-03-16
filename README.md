@@ -215,7 +215,7 @@ Fill the canvas with a color until find another, which was set as limit color. I
 
 ## Doxygen
 
-For more details, see the ![reference](https://vinihcampos.github.io/tiara/).
+For more details, see the [reference](https://vinihcampos.github.io/tiara/).
 
 ## Author
 
