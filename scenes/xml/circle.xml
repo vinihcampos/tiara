@@ -1,5 +1,8 @@
 <scene width="300" height="200" name="scenes/images/circle" centerx="150" centery="100">
-	<arc x="0" y="0" radius="20" border-color="olive" fill-color="purple" thickness="5">
+
+	<trigger x="0" y="0" limit-color="white" fill-color="white"/>
+
+	<arc x="0" y="0" radius="80" border-color="olive" thickness="10">
 		<trigger x="0" y="0"/>
 	</arc>
 

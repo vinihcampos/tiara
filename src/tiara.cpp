@@ -26,6 +26,7 @@ void processLine(Canvas & canvas, XMLElement *& pChild, std::map<string, Color> 
 void processPolygon(Canvas & canvas, XMLElement *& pChild, std::map<string, Color> & palette);
 void processPolyline(Canvas & canvas, XMLElement *& pChild, std::map<string, Color> & palette);
 void processArc(Canvas & canvas, XMLElement *& pChild, std::map<string, Color> & palette);
+void processTrigger(Canvas & canvas, XMLElement *& pChild, std::map<string, Color> & palette);
 void includePalette(std::map<string, Color> & palette, const string & fileName);
 
 int centerx, centery;
@@ -76,6 +77,8 @@ int main(int argn, char const *argv[]){
 			processPolyline(canvas, pChild, palette);
 		}else if(elementName.compare("Arc") == 0 || elementName.compare("arc") == 0){
 			processArc(canvas, pChild, palette);
+		}else if(elementName.compare("trigger") == 0 || elementName.compare("Trigger") == 0){
+			processTrigger(canvas, pChild, palette);
 		}else if(elementName.compare("Palette") == 0 || elementName.compare("palette") == 0){
 			continue;
 		}else{
@@ -84,7 +87,7 @@ int main(int argn, char const *argv[]){
 		}
 	}
 
-	canvas.antialiasing();
+	//canvas.antialiasing();
 	tiara::PPM::generator(canvas, fileName);
 
 	return 0;
@@ -245,25 +248,43 @@ void processArc(Canvas & canvas, XMLElement *& pChild, std::map<string, Color> &
 	}
 
 	string fillColor = "";
-	if(pChild->FindAttribute("fill-color") != NULL)
+	if(pChild->FindAttribute("fill-color") != NULL){
 		fillColor = pChild->Attribute("fill-color");
 
-	Color fc(fillColor, palette);
+		Color fc(fillColor, palette);
 
-	vector<Point2d> triggers;
+		vector<Point2d> triggers;
 
-	for(XMLElement * pGrandchild = pChild->FirstChildElement(); pGrandchild != NULL; pGrandchild = pGrandchild->NextSiblingElement()){
-		int x = pGrandchild->IntAttribute("x", 0) + centerx;
-		int y = pGrandchild->IntAttribute("y", 0) + centery;
-		triggers.push_back(Point2d(x,y));
-	}
+		for(XMLElement * pGrandchild = pChild->FirstChildElement(); pGrandchild != NULL; pGrandchild = pGrandchild->NextSiblingElement()){
+			int x = pGrandchild->IntAttribute("x", 0) + centerx;
+			int y = pGrandchild->IntAttribute("y", 0) + centery;
+			triggers.push_back(Point2d(x,y));
+		}
 
-	for(Point2d trigger : triggers){
-		canvas.fill(fc, trigger, bc);
-	}
+		for(Point2d trigger : triggers){
+			canvas.fill(fc, trigger, bc);
+		}
+	}	
 
 	delete s;
 }
+
+void processTrigger(Canvas & canvas, XMLElement *& pChild, std::map<string, Color> & palette){
+	int x = pChild->IntAttribute("x", 0) + centerx;
+	int y = pChild->IntAttribute("y", 0) + centery;
+	string color = "", border="";
+
+	if(pChild->FindAttribute("limit-color") != NULL)
+		border = pChild->Attribute("limit-color");
+	if(pChild->FindAttribute("fill-color") != NULL)
+		color = pChild->Attribute("fill-color");
+
+	Color c(color, palette);
+	Color b(border, palette);
+
+	canvas.fill(c, tiara::Point2d(x,y), b);
+}
+
 void includePalette(std::map<string, Color> & palette, const string & fileName){
 	ifstream file (fileName, std::ifstream::in);
 	string line;
