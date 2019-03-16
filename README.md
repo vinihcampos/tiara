@@ -21,6 +21,21 @@ TIARa is simple rasterizer to draw shapes, like: points, lines, polygons, polyli
 * [x] Palettes
 * [x] Viewport
 
+## Usage
+
+<details><summary> The instructions below shows how to compile and execute the project.</summary>
+
+```shell
+mkdir build
+cd build
+cmake ..
+cd ..
+./bin/tiara [file_name_of_descriptor]
+```
+
+</details>
+
+
 ## Manual
 
 <details><summary> The description below shows how to draw using tiara xml descriptor.</summary>
@@ -179,6 +194,23 @@ blue 0 0 255
 	<pallete file="palletes/paleta.txt"/>
 </scene>
 ```
+
+### trigger
+
+Fill the canvas with a color until find another, which was set as limit color. It can be used to fill the background color.
+#### Parameters
+- **x**: Center point on axis-x
+- **y**: Center point on axis-y
+- **fill-color**\*: Color of filling.
+- **limit-color**\*: Limit color of algorithm.
+
+```xml
+<scene>
+	<trigger x="0" y="0" limit-color="white" fill-color="white"/>
+</scene>
+```
+
+
 </details>
 
 ## Author
