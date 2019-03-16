@@ -87,7 +87,7 @@ int main(int argn, char const *argv[]){
 		}
 	}
 
-	//canvas.antialiasing();
+	canvas.antialiasing();
 	tiara::PPM::generator(canvas, fileName);
 
 	return 0;
