@@ -77,7 +77,7 @@ int main(int argn, char const *argv[]){
 			processPolyline(canvas, pChild, palette);
 		}else if(elementName.compare("Arc") == 0 || elementName.compare("arc") == 0){
 			processArc(canvas, pChild, palette);
-		}else if(elementName.compare("trigger") == 0 || elementName.compare("Trigger") == 0){
+		}else if(elementName.compare("Trigger") == 0 || elementName.compare("trigger") == 0){
 			processTrigger(canvas, pChild, palette);
 		}else if(elementName.compare("Palette") == 0 || elementName.compare("palette") == 0){
 			continue;
@@ -230,20 +230,22 @@ void processArc(Canvas & canvas, XMLElement *& pChild, std::map<string, Color> &
 	Color bc(borderColor, palette);
 	Shape * s;
 	
-	if(thickness == 1){
-		s = new Arc(tiara::Point2d(x,y), radius, bc, start, end);
-		s->draw(canvas);
-	}else if(thickness % 2 != 0){
-		int half = thickness / 2;
-		for(int i = -half; i <= half; ++i){
-			s = new Arc(tiara::Point2d(x,y), radius+i, bc, start, end);
+	if(borderColor.compare("")){
+		if(thickness == 1){
+			s = new Arc(tiara::Point2d(x,y), radius, bc, start, end);
 			s->draw(canvas);
-		}
-	}else{
-		int half = thickness / 2;
-		for(int i = -half+1; i <= half; ++i){
-			s = new Arc(tiara::Point2d(x,y), radius+i, bc, start, end);
-			s->draw(canvas);
+		}else if(thickness % 2 != 0){
+			int half = thickness / 2;
+			for(int i = -half; i <= half; ++i){
+				s = new Arc(tiara::Point2d(x,y), radius+i, bc, start, end);
+				s->draw(canvas);
+			}
+		}else{
+			int half = thickness / 2;
+			for(int i = -half+1; i <= half; ++i){
+				s = new Arc(tiara::Point2d(x,y), radius+i, bc, start, end);
+				s->draw(canvas);
+			}
 		}
 	}
 
@@ -261,9 +263,20 @@ void processArc(Canvas & canvas, XMLElement *& pChild, std::map<string, Color> &
 			triggers.push_back(Point2d(x,y));
 		}
 
-		for(Point2d trigger : triggers){
-			canvas.fill(fc, trigger, bc);
+		if(!borderColor.compare("")){
+			s = new Arc(tiara::Point2d(x,y), radius, fc, start, end);
+			s->draw(canvas);
+
+			for(Point2d trigger : triggers){
+				canvas.fill(fc, trigger, fc);
+			}
+		}else{
+			for(Point2d trigger : triggers){
+				canvas.fill(fc, trigger, bc);
+			}
 		}
+
+		
 	}	
 
 	delete s;

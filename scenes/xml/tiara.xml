@@ -1,0 +1,16 @@
+<scene name="scenes/images/tiara">
+	
+	<!-- Paint background -->
+	<trigger x="0" y="0" limit-color="white" fill-color="white"/>
+	
+	<!-- Draw the cube -->
+	<polygon border-color="black" thickness="10">
+		<p x="400" y="60"/>
+		<p x="605" y="180"/>
+		<p x="605" y="415"/>
+		<p x="400" y="535"/>
+		<p x="195" y="415"/>
+		<p x="195" y="180"/>
+	</polygon>
+</scene>
+

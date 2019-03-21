@@ -91,7 +91,7 @@ void tiara::Polygon::draw(Canvas & canvas){
 			for(size_t j = 0; j < active.size(); ++j){
 				if(j == active.size() - 1)
 					continue;
-				if(active[j].xmin == active[j+1].xmin){
+				if(std::round(active[j].xmin) == std::round(active[j+1].xmin)){
 					if(active[j].ymin == active[j+1].ymin || active[j].ymax == active[j+1].ymax){
 						if(!bit) canvas.pixel(Point2d((int) active[j].xmin, y), fillColor);
 						bit = (bit + 1) % 2; //
@@ -102,10 +102,8 @@ void tiara::Polygon::draw(Canvas & canvas){
 					if(!bit){
 						Line line(Point2d(std::ceil(active[j].xmin), y), Point2d(std::ceil(active[j+1].xmin), y), fillColor, Bresenham);
 						line.draw(canvas);
-						bit = 1;
-					}else{
-						bit = 0;
 					}
+					bit = (bit + 1) % 2;
 				}
 			}
 

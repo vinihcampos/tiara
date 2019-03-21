@@ -3,6 +3,7 @@
 #include <cstring>
 #include <iostream>
 #include <math.h>
+#include <stack>
 
 tiara::Canvas::Canvas(size_t width_, size_t height_, float norm) : width{width_}, height{height_} {
 	canvas = std::make_unique<component_t[]>(width * height * 3);
@@ -16,12 +17,23 @@ tiara::Canvas::Canvas(size_t width_, size_t height_, float norm) : width{width_}
 }
 
 void tiara::Canvas::fill(const Color & color, const Point2d p, const Color & borderColor){
-	if(p.x >= 0 && p.x < width && p.y >= 0 && p.y < height && !(get(p) == borderColor) && !(get(p) == color)){
-		pixel(p, color);
-		fill(color, Point2d(p.x, p.y+1), borderColor);
-		fill(color, Point2d(p.x+1, p.y), borderColor);
-		fill(color, Point2d(p.x, p.y-1), borderColor);
-		fill(color, Point2d(p.x-1, p.y), borderColor);
+	std::stack<Point2d> points;
+	points.push(p);
+
+	while(!points.empty()){
+
+		Point2d p_ = points.top();
+		points.pop();
+
+		if(p_.x >= 0 && p_.x < width && p_.y >= 0 && p_.y < height){
+			if(!(get(p_) == borderColor) && !(get(p_) == color)){
+				pixel(p_, color);
+				points.push(Point2d(p_.x, p_.y+1));
+				points.push(Point2d(p_.x+1, p_.y));
+				points.push(Point2d(p_.x, p_.y-1));
+				points.push(Point2d(p_.x-1, p_.y));	
+			}		
+		}
 	}
 }
 
